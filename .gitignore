@@ -1,0 +1,8 @@
+# Local editor and system files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Test output
+.tmp/
