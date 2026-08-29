@@ -1,34 +1,48 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0B1020,45:1E3A8A,100:06B6D4&height=210&section=header&text=MARCEL&fontSize=62&fontColor=F8FAFC&animation=fadeIn&fontAlignY=37&desc=A%20clean%2C%20neon%20workspace%20for%20Termux&descAlignY=58&descSize=17" alt="MARCEL — a clean, neon workspace for Termux" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,45:052E16,100:16A34A&height=210&section=header&text=MARCEL&fontSize=62&fontColor=F0FDF4&animation=fadeIn&fontAlignY=37&desc=Hacker%20style%20workspace%20for%20Termux&descAlignY=58&descSize=17" alt="MARCEL — Hacker style workspace for Termux" width="100%" />
 </p>
 
 <p align="center">
-  <a href="https://github.com/MarcelTm1/MARCEL/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-22D3EE?style=for-the-badge&labelColor=0F172A" alt="MIT License" /></a>
-  <a href="https://github.com/MarcelTm1/MARCEL/stargazers"><img src="https://img.shields.io/github/stars/MarcelTm1/MARCEL?style=for-the-badge&color=FACC15&labelColor=0F172A" alt="GitHub stars" /></a>
-  <a href="https://github.com/MarcelTm1/MARCEL/issues"><img src="https://img.shields.io/github/issues/MarcelTm1/MARCEL?style=for-the-badge&color=A78BFA&labelColor=0F172A" alt="GitHub issues" /></a>
+  <a href="https://github.com/MarcelTm1/MARCEL/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-22C55E?style=for-the-badge&labelColor=020617" alt="MIT License" /></a>
+  <a href="https://github.com/MarcelTm1/MARCEL/stargazers"><img src="https://img.shields.io/github/stars/MarcelTm1/MARCEL?style=for-the-badge&color=FACC15&labelColor=020617" alt="GitHub stars" /></a>
+  <a href="https://github.com/MarcelTm1/MARCEL/issues"><img src="https://img.shields.io/github/issues/MarcelTm1/MARCEL?style=for-the-badge&color=A78BFA&labelColor=020617" alt="GitHub issues" /></a>
 </p>
 
 <p align="center">
-  <strong>MARCEL</strong> is a polished, touch-friendly visual setup for <a href="https://termux.dev/">Termux</a>. It brings a midnight-blue terminal palette, a practical extra-key bar, and a compact Bash prompt—without root access, plugins, or opaque one-line installers.
+  <strong>MARCEL</strong> is a clean, hacker-inspired visual setup for <a href="https://termux.dev/">Termux</a>: a dark terminal palette, a touch-friendly key bar, an ASCII startup banner, and a focused Bash prompt.
 </p>
 
-## Overview
+## Preview
 
-MARCEL is designed for people who use Termux as a real workspace. The goal is not to add unnecessary frameworks; it is to make the terminal feel focused, readable, and fast on a phone.
+```text
+███╗   ███╗ █████╗ ██████╗  ██████╗███████╗██╗
+████╗ ████║██╔══██╗██╔══██╗██╔════╝██╔════╝██║
+██╔████╔██║███████║██████╔╝██║     █████╗  ██║
+██║╚██╔╝██║██╔══██║██╔══██╗██║     ██╔══╝  ██║
+██║ ╚═╝ ██║██║  ██║██║  ██║╚██████╗███████╗██║
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝
+[ SYSTEM ONLINE ]  secure shell / termux
 
-| Component | What it adds |
+╭─[u0_a123@termux]─[~]
+╰─❯
+```
+
+## Features
+
+| Component | What it does |
 | :-- | :-- |
-| **Midnight palette** | High-contrast navy, cyan, and violet colors for long sessions. |
-| **Mobile key bar** | Two rows with navigation, modifiers, and editor-friendly symbols. |
-| **Bash prompt** | A minimal two-line prompt with the current user and directory. |
-| **Welcome card** | A small, non-intrusive greeting with a built-in `marcel-help` command. |
-| **Safe installer** | Timestamped backups before every installation; no root and no remote shell piping. |
+| **Hacker palette** | Black-blue background with green terminal accents and readable contrast. |
+| **ASCII MARCEL** | Displays the MARCEL wordmark once when a new interactive Bash session starts. |
+| **Parser-safe key bar** | Uses the simple quoted-key format supported by Termux, avoiding the `extra-keys` popup error. |
+| **Focused prompt** | Shows the current user and directory without noisy decorations. |
+| **Safe installer** | Creates a timestamped backup before every install and changes only MARCEL-managed files. |
+| **No root or plugins** | The theme uses Termux configuration and Bash only. |
 
-> MARCEL changes only `~/.termux/colors.properties`, `~/.termux/termux.properties`, `~/.termux/marcel-prompt.sh`, and one clearly marked block in `~/.bashrc`. Existing versions of those files are copied to `~/.marcel-backups/<timestamp>/` first.
+> The startup banner is plain terminal output, not a toast or Android popup. It appears once per new interactive shell. Set `MARCEL_NO_BANNER=1` for a session without it.
 
 ## Install
 
-Termux stores terminal preferences in `~/.termux/termux.properties`; after editing, they can be applied with `termux-reload-settings` or by restarting Termux.[1] The following commands clone the repository locally so that you can inspect the installer before running it.
+Termux reads terminal preferences from `~/.termux/termux.properties`; changes can be applied with `termux-reload-settings` or by restarting Termux.[1] Clone the repository locally so you can inspect the files before running the installer.
 
 ```bash
 pkg update && pkg install -y git
@@ -37,39 +51,33 @@ cd MARCEL
 bash scripts/install.sh
 ```
 
-After the installer finishes, open a new Termux session or run:
+Then open a new Termux session or run:
 
 ```bash
 exec bash
 ```
 
-## What you get
+## Disable the startup banner
 
-```text
-╭─[u0_a123@termux]─[~]
-╰─❯
+To start the current shell without the ASCII banner:
+
+```bash
+MARCEL_NO_BANNER=1 exec bash
 ```
 
-The extra-key row is optimized for common command-line navigation and editing:
-
-```text
-ESC  /  -  HOME  UP  END  :
-TAB  CTRL  ALT  LEFT  DOWN  RIGHT  ~
-```
-
-Several keys offer a useful swipe-up alternative. For example, swipe up on `LEFT` for `HOME`, or on `UP` for `PGUP`.
+The default MARCEL setup does not create a recurring popup. If an old version of MARCEL is still loaded in the current session, run `exec bash` after updating the files.
 
 ## Commands
 
 | Command | Purpose |
 | :-- | :-- |
-| `marcel-help` | Shows the available MARCEL shortcuts and editing hints. |
-| `marcel-welcome` | Shows the welcome card again. |
-| `termux-reload-settings` | Reloads terminal colors and extra keys after you modify a Termux configuration file.[1] |
+| `marcel-help` | Shows shortcuts and customization commands. |
+| `marcel-banner` | Shows the ASCII MARCEL banner manually. |
+| `termux-reload-settings` | Reloads colors and extra keys after configuration changes.[1] |
 
-## Customization
+## Customize
 
-MARCEL is intentionally plain text and easy to adapt. Copy a configuration file, change it, then reload the settings.
+MARCEL is plain text and easy to edit:
 
 ```bash
 nano ~/.termux/colors.properties
@@ -77,7 +85,14 @@ nano ~/.termux/termux.properties
 termux-reload-settings
 ```
 
-The Termux configuration format uses simple `key=value` properties. The included extra-key syntax follows the examples in the official Termux configuration template.[2]
+The extra-key layout intentionally uses quoted values and two rows:
+
+```text
+ESC  /  -  HOME  UP  END  PGUP
+TAB  CTRL  ALT  LEFT  DOWN  RIGHT  PGDN
+```
+
+This follows the style shown in the official Termux properties template.[2]
 
 ## Update
 
@@ -85,13 +100,14 @@ The Termux configuration format uses simple `key=value` properties. The included
 cd ~/MARCEL
 git pull --ff-only
 bash scripts/install.sh
+exec bash
 ```
 
-A new backup is created at every install or update, so your previous setup remains available under `~/.marcel-backups/`.
+Each update creates a fresh backup in `~/.marcel-backups/<timestamp>/`.
 
 ## Remove
 
-To remove the MARCEL prompt integration while keeping the current colors and extra-key layout, run:
+The uninstall command removes the MARCEL prompt integration but keeps the current colors and key layout:
 
 ```bash
 cd ~/MARCEL
@@ -99,11 +115,11 @@ bash scripts/install.sh --uninstall
 exec bash
 ```
 
-The command removes only the MARCEL-managed Bash block and prompt file. To restore an earlier configuration, copy the desired files from `~/.marcel-backups/<timestamp>/` back into `~/.termux/`, then run `termux-reload-settings`.
+To restore an older configuration, copy the desired files from `~/.marcel-backups/<timestamp>/` back into `~/.termux/`, then run `termux-reload-settings`.
 
 ## Contributing
 
-Ideas, improvements, and device-specific feedback are welcome. Please open an [issue](https://github.com/MarcelTm1/MARCEL/issues) with your Termux version, Android version, and a clear description of the behaviour you observed. For code changes, create a focused pull request with a concise explanation of the improvement.
+Ideas, improvements, and device-specific feedback are welcome. Open an [issue](https://github.com/MarcelTm1/MARCEL/issues) with your Termux version, Android version, and a clear description of the behaviour. For code changes, create a focused pull request with a concise explanation.
 
 ## License
 
@@ -115,5 +131,5 @@ Distributed under the [MIT License](LICENSE).
 [2] [termux/termux-tools — default `termux.properties`](https://github.com/termux/termux-tools/blob/master/termux.properties)
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0B1020,45:1E3A8A,100:06B6D4&height=110&section=footer" alt="Decorative footer" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,45:052E16,100:16A34A&height=110&section=footer" alt="Decorative footer" width="100%" />
 </p>

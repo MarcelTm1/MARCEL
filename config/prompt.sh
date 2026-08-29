@@ -1,22 +1,28 @@
-# MARCEL for Termux — interactive Bash prompt
+# MARCEL // HACKER MODE — interactive Bash prompt
 # This file is sourced by a managed block in ~/.bashrc.
 
 [[ $- == *i* ]] || return
 
-marcel_welcome() {
-  printf '\n\033[38;5;45m┌──────────────────────────────────────────────┐\033[0m\n'
-  printf '\033[38;5;45m│\033[0m  \033[1;38;5;117mMARCEL\033[0m  \033[38;5;250m—  a clean Termux workspace\033[0m       \033[38;5;45m│\033[0m\n'
-  printf '\033[38;5;45m│\033[0m  \033[38;5;141mType \033[1mmarcel-help\033[0m\033[38;5;141m for shortcuts and tips.\033[0m  \033[38;5;45m│\033[0m\n'
-  printf '\033[38;5;45m└──────────────────────────────────────────────┘\033[0m\n\n'
+marcel_banner() {
+  printf '\n\033[1;38;5;46m'
+  cat <<'EOF'
+███╗   ███╗ █████╗ ██████╗  ██████╗███████╗██╗
+████╗ ████║██╔══██╗██╔══██╗██╔════╝██╔════╝██║
+██╔████╔██║███████║██████╔╝██║     █████╗  ██║
+██║╚██╔╝██║██╔══██║██╔══██╗██║     ██╔══╝  ██║
+██║ ╚═╝ ██║██║  ██║██║  ██║╚██████╗███████╗██║
+╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝
+EOF
+  printf '\033[0m\033[38;5;46m[ SYSTEM ONLINE ]\033[0m  \033[38;5;244msecure shell / termux\033[0m\n\n'
 }
 
 marcel-help() {
   cat <<'EOF'
-MARCEL shortcuts
+MARCEL // HACKER MODE
 
-  marcel-help    Show this help
-  marcel-welcome Show the MARCEL welcome card
-  clear          Clear the screen as usual
+  marcel-help       Show this help
+  marcel-banner     Show the ASCII MARCEL banner
+  MARCEL_NO_BANNER=1  Start without the banner
 
 Edit the theme
 
@@ -26,13 +32,13 @@ Edit the theme
 EOF
 }
 
-marcel-welcome() {
-  marcel_welcome
+marcel-banner() {
+  marcel_banner
 }
 
-PS1='\[\e]0;MARCEL • \w\a\]\[\e[38;5;45m\]╭─\[\e[38;5;117m\][\u@termux]\[\e[38;5;45m\]─\[\e[38;5;111m\][\w]\n\[\e[38;5;45m\]╰─\[\e[38;5;81m\]❯\[\e[0m\] '
+PS1='\[\e]0;MARCEL • \w\a\]\[\e[38;5;46m\]╭─\[\e[38;5;117m\][\u@termux]\[\e[38;5;46m\]─\[\e[38;5;111m\][\w]\n\[\e[38;5;46m\]╰─\[\e[38;5;81m\]❯\[\e[0m\] '
 
-if [[ -z ${MARCEL_WELCOME_SHOWN:-} ]]; then
-  marcel_welcome
-  export MARCEL_WELCOME_SHOWN=1
+# The banner is shown once per interactive shell, never as a popup/toast.
+if [[ ${MARCEL_NO_BANNER:-0} != 1 ]]; then
+  marcel_banner
 fi
